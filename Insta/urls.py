@@ -15,7 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include,path
-from Insta.views import HelloWorld
+from Insta.views import HelloWorld, PostView, PostDetailView, PostCreateView,PostUpdateView,PostDeletelView,addLike,UserDetailView,EditProfile,toggleFollow
 urlpatterns = [
-    path('', HelloWorld.as_view(), name='helloworld')
+    path('helloworld', HelloWorld.as_view(), name='helloworld'),
+    path('',PostView.as_view(),name='posts'),
+    path('posts/<int:pk>/',PostDetailView.as_view(),name='post_detail'),
+    path('posts/new/',PostCreateView.as_view(),name='make_post'),
+    path('posts/update/<int:pk>/',PostUpdateView.as_view(),name='post_update'),
+    path('posts/delete/<int:pk>/',PostDeletelView.as_view(),name='post_delete'),
+    path('like', addLike, name='addLike'),
+    path('user/<int:pk>/',UserDetailView.as_view(),name='user_detail'),
+    path('edit_profile/<int:pk>/', EditProfile.as_view(), name='edit_profile'),
+    path('togglefollow', toggleFollow, name='togglefollow'),
 ]

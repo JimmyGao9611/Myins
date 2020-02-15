@@ -1,0 +1,1 @@
+web: gunicorn JInsta.wsgi --log-file -

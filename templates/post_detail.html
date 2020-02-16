@@ -7,7 +7,7 @@
 <div class="row single-post">
     <div class="single-post-card view-update {{ object.pk }}">
         <div class="header">
-            <a href="{% url 'helloworld' %}">
+            <a href="{% url 'user_detail' post.author.id %}">
                 {% if object.author.profile_pic %}
                     <img class="picture-circle--medium" src="/{{object.author.profile_pic.url}}">
                 {% endif %}
@@ -45,6 +45,21 @@
                     <span class="post-pk">{{ object.pk }}</span>
                 </div>{%endcomment%}
             </section>
+            <div style='position:absolute; z-index:999; top:100; font-size: 17;'>
+                {% if user == object.author %}   
+                    <div class="profile">
+                        <div class="profile__head">
+                            <a class="edit-desktop" href="{% url 'post_update' object.pk %}">
+                                <button class="edit-profile">Update </button>
+                            </a>
+                            <span>      </span>
+                            <a class="edit-desktop" href="{% url 'post_delete' object.pk %}">
+                                <button class="edit-profile">Delete </button>
+                            </a>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
         </div>
     </div>
 </div>
